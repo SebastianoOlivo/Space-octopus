@@ -1,4 +1,6 @@
 .DS_Store
 ._index.html
-/node_modules/
-/dist/
+node_modules/
+dist/
+
+.sass-cache/
