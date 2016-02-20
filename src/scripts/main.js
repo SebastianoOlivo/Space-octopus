@@ -9,9 +9,12 @@ var stage = new PIXI.Container();
 
 var scroller = new Scroller(stage);
 
+var octopus = new SpriteLoader(stage, 'octopus.jpg');
+
 function anim() {
     renderer.render(stage);
     requestAnimationFrame(anim);
+    octopus.setPositionX(100);
 }
 
 anim();

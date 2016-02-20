@@ -26,14 +26,35 @@ var stage = new PIXI.Container();
 
 var scroller = new Scroller(stage);
 
+var octopus = new SpriteLoader(stage, 'octopus.jpg');
+
 function anim() {
     renderer.render(stage);
     requestAnimationFrame(anim);
+    octopus.setPositionX(100);
 }
 
 anim();
 
 function Scroller(stage) {
-    this.far = new Background((1, 'sprites/testSprite.png', 400, 700));
+    this.far = new Background(1, 'sprites/testSprite.png', 400, 700);
     stage.addChild(this.far);
+}
+
+function SpriteLoader(stage, image) {
+    var img;
+
+    this.setPositionX = function(value) {
+        if(img.position.x != undefined) {
+            img.position.x = value;
+        }
+    }
+
+    this.sprite = function() {
+        var id = PIXI.loader.resources['sprites/testSprite.json'].textures;
+        img = new PIXI.Sprite(id[image]);
+        stage.addChild(img);
+    }
+
+    PIXI.loader.add('sprites/testSprite.json').load(this.sprite);
 }
