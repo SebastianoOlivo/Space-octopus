@@ -31,7 +31,7 @@ gulp.task('styles', function() {
 
 // Scripts
 gulp.task('scripts', function() {
-  return gulp.src('src/scripts/**/*.js')
+  return gulp.src(['src/scripts/**/*.js', '!src/scripts/vendor/**/*'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
@@ -40,6 +40,15 @@ gulp.task('scripts', function() {
     .pipe(uglify())
     .pipe(gulp.dest('dist/scripts'))
     .pipe(notify({ message: 'Scripts task complete' }));
+});
+
+gulp.task('vendors', function() {
+  return gulp.src('src/scripts/vendor/**/*')
+    .pipe(concat('vendors.js'))
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe(notify({ message: 'Vendor task complete' }));
 });
 
 // Scripts
@@ -72,7 +81,7 @@ gulp.task('clean', function() {
 
 // Default task
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'sprites', 'html');
+  gulp.start('styles', 'scripts', 'sprites', 'images', 'html', 'vendors');
 });
 
 // Watch
@@ -86,6 +95,9 @@ gulp.task('watch', function() {
 
   // Watch image files
   gulp.watch('src/images/**/*', ['images']);
+
+  // Watch html files
+  gulp.watch('src/**/*.html', ['html']);
 
   // Create LiveReload server
   livereload.listen();
