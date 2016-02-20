@@ -9,7 +9,7 @@
 	"sourceSize": {"w":165,"h":719},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"index.jpg":
+"octopus.jpg":
 {
 	"frame": {"x":165,"y":0,"w":225,"h":225},
 	"rotated": false,
@@ -27,7 +27,7 @@
 	"sourceSize": {"w":263,"h":632},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"Coral_Dragon_3c.png":
+"coral.png":
 {
 	"frame": {"x":653,"y":0,"w":280,"h":296},
 	"rotated": false,
@@ -52,6 +52,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1280,"h":1743},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:79932554e460581820906372ff27ff5f:7cb98bc1e531d115a8cdd355d19f0a18:37cf9f2f8cbe9646ae0924ab2c3b0ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:51b2c1756762cbf00a4e4fa7667da4c1:34f3e49f0e6fb822290f2ffeb2647898:37cf9f2f8cbe9646ae0924ab2c3b0ce2$"
 }
 }
