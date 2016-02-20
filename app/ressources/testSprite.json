@@ -1,0 +1,57 @@
+{"frames": {
+
+"border_right.png":
+{
+	"frame": {"x":0,"y":0,"w":165,"h":719},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":165,"h":719},
+	"sourceSize": {"w":165,"h":719},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"index.jpg":
+{
+	"frame": {"x":165,"y":0,"w":225,"h":225},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":225,"h":225},
+	"sourceSize": {"w":225,"h":225},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"border_left.png":
+{
+	"frame": {"x":390,"y":0,"w":263,"h":632},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":263,"h":632},
+	"sourceSize": {"w":263,"h":632},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Coral_Dragon_3c.png":
+{
+	"frame": {"x":653,"y":0,"w":280,"h":296},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":296},
+	"sourceSize": {"w":280,"h":296},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"far.png":
+{
+	"frame": {"x":0,"y":719,"w":1280,"h":1024},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":1024},
+	"sourceSize": {"w":1280,"h":1024},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "testSprite.png",
+	"format": "RGBA8888",
+	"size": {"w":1280,"h":1743},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:79932554e460581820906372ff27ff5f:7cb98bc1e531d115a8cdd355d19f0a18:37cf9f2f8cbe9646ae0924ab2c3b0ce2$"
+}
+}
