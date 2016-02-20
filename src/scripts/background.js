@@ -4,7 +4,7 @@ function Background(delta, image, width, height) {
     var _width = width;
     var _height = height;
 
-    PIXI.extras.TilingSprite.call(this, _image, this._width, this._height);
+    PIXI.extras.TilingSprite.call(this, SPRITEID['octopus.jpg'], this._width, this._height);
 
     this.position.x = 0;
     this.position.y = 0;
