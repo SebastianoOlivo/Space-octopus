@@ -11,10 +11,8 @@ MapBuilder.prototype = Object.create(PIXI.Container.prototype);
 
 MapBuilder.prototype.createBorders = function() {
     this.borders = [];
-
     this.addBorderSprites(6, "border_left.png");
     this.addBorderSprites(6, "border_right.png");
-
     this.shuffle(this.borders);
 };
 
@@ -33,13 +31,13 @@ MapBuilder.prototype.createRocks = function() {
     this.addRocksprites(6, "rock01.png");
     this.addRocksprites(7, "rock02.png");
     this.addRocksprites(9, "rock03.png");
-
     this.shuffle(this.Rocks);
 };
 
 MapBuilder.prototype.addRocksprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
+        this.position(sprite, GAMEWIDTH,  MAP_HEIGHT);
         this.Rocks.push(sprite);
     }
 };
@@ -58,6 +56,7 @@ MapBuilder.prototype.createSushis = function() {
 MapBuilder.prototype.addSushisprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
+        this.position(sprite, GAMEWIDTH,  MAP_HEIGHT);
         this.Sushis.push(sprite);
     }
 };
