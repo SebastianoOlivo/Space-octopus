@@ -3,7 +3,7 @@ function MapBuilder(number) {
 
     this.number = number;
 
-    this.createBorders();
+    //this.createBorders();
     this.createRocks();
     this.createSushis();
     this.side = 'left';
