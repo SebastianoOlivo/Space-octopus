@@ -10,28 +10,45 @@ MapGenerator.prototype.generateMap = function() {
 		y = this.displayedMaps-1;
 
 	for (i; i > 0; i--) {
-		var map = new MapBuilder ();
+		var map = new MapBuilder(i);
 		this.maps.push(map);
-		console.log(map)
 	};
 
-	while(y >= 0) {
-		MapGenerator.prototype.addMapsToStage(this.maps[y], ((-MAP_HEIGHT)*(y+1))+GAMEHEIGHT);
-		y--;
-	}
+	console.log(this.maps);
+
+	this.maps.forEach(function(value, index, array) {
+		MapGenerator.prototype.addMapToStage(array[index], GAMEHEIGHT);
+	})
+
+	this.maps[0].position.y = -(MAP_HEIGHT-GAMEHEIGHT);
 };
 
-MapGenerator.prototype.addMapsToStage = function(map, pos) {
+MapGenerator.prototype.addMapToStage = function(map, pos) {
 	map.position.y = pos;
 	stage.addChild(map);
 }
 
-MapGenerator.prototype.setViewportY = function(viewportY) {
-	/*if(viewportY >= MAP_HEIGHT-GAMEHEIGHT) {
-		this.addMapsToStage(this.maps[1], -(MAP_HEIGHT-GAMEHEIGHT));
-	}*/
-	this.maps[0].setViewportY(viewportY);
-	this.maps[1].setViewportY(viewportY);
+MapGenerator.prototype.setViewportY = function(units) {
+	var y = this.displayedMaps-1;
+
+	this.digestMapCycle();
+
+	this.maps[0].setViewportY(this.maps[0].viewportY + units);
+	this.maps[1].setViewportY(this.maps[1].viewportY + units);
+};
+
+MapGenerator.prototype.digestMapCycle = function() {
+	if(this.maps[0].position.y+GAMEHEIGHT === 0) {
+		this.maps[1].position.y = -MAP_HEIGHT;
+		console.log('add');
+	}
+
+	if(this.maps[0].position.y-GAMEHEIGHT >= 0) {
+		console.log('remove');
+		this.maps[0].position.y = -MAP_HEIGHT;
+		var item = this.maps.shift();
+		this.maps.push(item);
+	}
 };
 
 MapGenerator.prototype.getViewportY = function() {
@@ -39,6 +56,5 @@ MapGenerator.prototype.getViewportY = function() {
 };
 
 MapGenerator.prototype.moveViewportYBy = function(units) {
-	var newViewportY = this.maps[0].viewportY + units;
-	this.setViewportY(newViewportY);
+	this.setViewportY(units);
 };

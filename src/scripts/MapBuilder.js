@@ -1,5 +1,7 @@
-function MapBuilder() {
-    PIXI.Container.call(this);
+function MapBuilder(number) {
+    PIXI.ParticleContainer.call(this);
+
+    this.number = number;
 
     this.createBorders();
     this.createRocks();
@@ -10,7 +12,7 @@ function MapBuilder() {
 }
 
 MapBuilder.constructor = MapBuilder;
-MapBuilder.prototype = Object.create(PIXI.Container.prototype);
+MapBuilder.prototype = Object.create(PIXI.ParticleContainer.prototype);
 
 
 MapBuilder.prototype.createBorders = function() {
@@ -32,9 +34,9 @@ MapBuilder.prototype.addBorderSprites = function(amount, frameId) {
 
 
 MapBuilder.prototype.createRocks = function() {
-    this.addRocksprites(6, "rock01.png");
-    this.addRocksprites(7, "rock02.png");
-    this.addRocksprites(9, "rock03.png");
+    this.addRocksprites(2, "rock01.png");
+    this.addRocksprites(1, "rock02.png");
+    this.addRocksprites(3, "rock03.png");
 };
 
 MapBuilder.prototype.addRocksprites = function(amount, frameId) {
@@ -50,15 +52,16 @@ MapBuilder.prototype.addRocksprites = function(amount, frameId) {
 
 
 MapBuilder.prototype.createSushis = function() {
-    this.addSushisprites(3, "sushi01.png");
-    this.addSushisprites(4, "sushi02.png");
-    this.addSushisprites(6, "sushi03.png");
+    this.addSushisprites(1, "sushi01.png");
+    this.addSushisprites(1, "sushi02.png");
+    this.addSushisprites(1, "sushi03.png");
 };
 
 MapBuilder.prototype.addSushisprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
-        //this.addChild(sprite);
+        this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
+        this.addChild(sprite);
     }
 };
 
