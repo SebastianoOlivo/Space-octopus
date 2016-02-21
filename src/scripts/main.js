@@ -4,7 +4,12 @@ var canvas = document.querySelector('#game'),
     GAMEHEIGHT = canvas.height,
     MAP_HEIGHT = 1800,
     SPRITEID,
-    scrollSpeed = 6;
+    scrollSpeed = 6,
+    activeListeners = false,
+    animation,
+    requestAnimationFrameId;
+
+var requestId;
 
 var renderer = PIXI.autoDetectRenderer(GAMEWIDTH, GAMEHEIGHT, {
     view: canvas
@@ -23,30 +28,34 @@ function game() {
     maps.generateMap();
 
     var squids = new Squid();
-
-    keyboard();
+    Keyboard();
 
     function anim() {
         scroller.moveViewportYBy(scrollSpeed);
         maps.moveViewportYBy(scrollSpeed);
+        squids.outOfScreen();
 
         stage.children.forEach(function(value, index, array) {
             if(MapBuilder.prototype.isPrototypeOf(value)) {
                 var parent = value;
                 value.children.forEach(function(value, index, array) {
                     if(collisions(value, stage.children[7], parent)) {
-                        console.log('BOUM');
-                        console.log(value);
-                        scrollSpeed = 0;
-                        stage.children[7].position.y += 2;
-                        return
+                        endGame();
+                        return;
                     }
                 })
             }
         })
 
         renderer.render(stage);
-        requestAnimationFrame(anim);
+        requestAnimationFrameId = requestAnimationFrame(anim);
     }
     anim();
+}
+
+//game over
+function endGame() {
+    stage = new PIXI.Container();
+    cancelAnimationFrame(requestAnimationFrameId);
+    game();
 }

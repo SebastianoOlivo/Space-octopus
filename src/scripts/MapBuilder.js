@@ -75,6 +75,7 @@ MapBuilder.prototype.addSushisprites = function(amount, frameId) {
         var sushiSize = 0.8;
         sprite.scale.x = sushiSize;
         sprite.scale.y = sushiSize;
+        sprite.name = "sushi";
         this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT / (amount / i), MAP_HEIGHT / (amount / i) + (MAP_HEIGHT / amount));
         this.addChild(sprite);
     }

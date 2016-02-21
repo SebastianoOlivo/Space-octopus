@@ -1,18 +1,16 @@
-function keyboard(keyCode) {
+function Keyboard(keyCode) {
     var key = {};
     key.code = keyCode;
     key.isDown = false;
     key.isUp = true;
     key.press = undefined;
     key.release = undefined;
-
     var move = false;
     //The `downHandler`
     function easeLeft() {
         move = true;
         function animation() {
-            console.log('ease elem');
-            stage.children[7].position.x -= 12;
+            stage.children[7].position.x -= 10;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -24,8 +22,7 @@ function keyboard(keyCode) {
     function easeRight() {
         move = true;
         function animation() {
-            console.log('ease elem');
-            stage.children[7].position.x += 12;
+            stage.children[7].position.x += 10;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -37,8 +34,7 @@ function keyboard(keyCode) {
     function easeTop() {
         move = true;
         function animation() {
-            console.log('ease elem');
-            stage.children[7].position.y -= 12;
+            stage.children[7].position.y -= 10;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -50,8 +46,7 @@ function keyboard(keyCode) {
     function easeBottom() {
         move = true;
         function animation() {
-            console.log('ease elem');
-            stage.children[7].position.y += 12;
+            stage.children[7].position.y += 10;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -61,13 +56,6 @@ function keyboard(keyCode) {
     }
 
     key.downHandler = function(event) {
-        console.log(event.keyCode);
-        if (event.keyCode === key.code) {
-            if (key.isUp && key.press) key.press();
-            key.isDown = true;
-            key.isUp = false;
-        }
-
         if (event.keyCode === 37) {
             easeLeft();
         }
@@ -98,11 +86,17 @@ function keyboard(keyCode) {
     };
 
     //Attach event listeners
-    window.addEventListener(
-        "keydown", key.downHandler.bind(key), false
-    );
-    window.addEventListener(
-        "keyup", key.upHandler.bind(key), false
-    );
+
+    if(!activeListeners) {
+        window.addEventListener(
+            "keydown", key.downHandler.bind(key), false
+        );
+        window.addEventListener(
+            "keyup", key.upHandler.bind(key), false
+        );
+        activeListeners = true;
+    }
+
+
     return key;
 }
