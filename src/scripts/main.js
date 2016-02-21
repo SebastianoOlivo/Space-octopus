@@ -2,6 +2,8 @@
 var canvas = document.querySelector('#game'),
     GAMEWIDTH = canvas.width,
     GAMEHEIGHT = canvas.height,
+    SCROLLSPEED = 5,
+    MAP_HEIGHT = 1800,
     SPRITEID;
 
 var renderer = PIXI.autoDetectRenderer(GAMEWIDTH, GAMEHEIGHT, {
@@ -17,10 +19,13 @@ function game() {
     SPRITEID = PIXI.loader.resources['sprites/testSprite.json'].textures;
 
     var scroller = new Scroller(stage);
+    var test = new MapGenerator();
+    test.generateMap();
 
     //var octopus = new SpriteLoader(stage, 'octopus.jpg');
 
     function anim() {
+        scroller.moveViewportYBy(SCROLLSPEED);
         renderer.render(stage);
         requestAnimationFrame(anim);
     }
