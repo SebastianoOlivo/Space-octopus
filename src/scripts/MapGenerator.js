@@ -18,7 +18,7 @@ MapGenerator.prototype.generateMap = function() {
 		MapGenerator.prototype.addMapToStage(array[index], GAMEHEIGHT);
 	})
 
-	this.maps[0].position.y = -(MAP_HEIGHT-GAMEHEIGHT);
+	this.maps[0].position.y = -(MAP_HEIGHT);
 };
 
 MapGenerator.prototype.addMapToStage = function(map, pos) {
