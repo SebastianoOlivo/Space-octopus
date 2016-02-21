@@ -19,13 +19,14 @@ function game() {
     SPRITEID = PIXI.loader.resources['sprites/testSprite.json'].textures;
 
     var scroller = new Scroller(stage);
-    var test = new MapGenerator();
-    test.generateMap();
+    var viewport = new MapGenerator(stage);
+    viewport.generateMap();
 
     //var octopus = new SpriteLoader(stage, 'octopus.jpg');
 
     function anim() {
         scroller.moveViewportYBy(SCROLLSPEED);
+        viewport.moveViewportYBy(SCROLLSPEED);
         renderer.render(stage);
         requestAnimationFrame(anim);
     }

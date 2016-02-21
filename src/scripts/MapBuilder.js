@@ -1,8 +1,12 @@
 function MapBuilder() {
+    PIXI.Container.call(this);
+
     this.createBorders();
     this.createRocks();
     this.createSushis();
     this.side = 'left';
+
+    this.viewportY = 0
 }
 
 MapBuilder.constructor = MapBuilder;
@@ -11,8 +15,10 @@ MapBuilder.prototype = Object.create(PIXI.Container.prototype);
 
 MapBuilder.prototype.createBorders = function() {
     this.borders = [];
+
     this.addBorderSprites(6, "border_left.png");
     this.addBorderSprites(6, "border_right.png");
+
     this.shuffle(this.borders);
 };
 
@@ -26,38 +32,33 @@ MapBuilder.prototype.addBorderSprites = function(amount, frameId) {
 
 
 MapBuilder.prototype.createRocks = function() {
-    this.Rocks = [];
-
     this.addRocksprites(6, "rock01.png");
     this.addRocksprites(7, "rock02.png");
     this.addRocksprites(9, "rock03.png");
-    this.shuffle(this.Rocks);
 };
 
 MapBuilder.prototype.addRocksprites = function(amount, frameId) {
-    for (var i = 0; i < amount; i++) {
+    var i = 0;
+
+    for (i; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
-        this.position(sprite, GAMEWIDTH,  MAP_HEIGHT);
-        this.Rocks.push(sprite);
+        //console.log(MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount), MAP_HEIGHT/(amount/i));
+        this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
+        this.addChild(sprite);
     }
 };
 
 
 MapBuilder.prototype.createSushis = function() {
-    this.Sushis = [];
-
     this.addSushisprites(3, "sushi01.png");
     this.addSushisprites(4, "sushi02.png");
     this.addSushisprites(6, "sushi03.png");
-
-    this.shuffle(this.Sushis);
 };
 
 MapBuilder.prototype.addSushisprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
-        this.position(sprite, GAMEWIDTH,  MAP_HEIGHT);
-        this.Sushis.push(sprite);
+        //this.addChild(sprite);
     }
 };
 
@@ -75,9 +76,9 @@ MapBuilder.prototype.borderSide = function(elem, side) {
     }
 }
 
-MapBuilder.prototype.position = function(elem, maxWidth, maxHeight) {
-    elem.position.x = this.randomInt(0, maxWidth - elem.width);
-    elem.position.y = this.randomInt(0, maxHeight - elem.height);
+MapBuilder.prototype.randomPos = function(elem, maxWidth, min, max) {
+    elem.position.x = this.randomInt(0-GAMEWIDTH/5, (maxWidth - elem.width)+GAMEWIDTH/5);
+    elem.position.y = this.randomInt(min, max - elem.height);
 }
 
 MapBuilder.prototype.randomInt = function(min, max) {
@@ -92,4 +93,10 @@ MapBuilder.prototype.shuffle = function(array) {
         var pos = Math.floor(Math.random() * (len - 1));
         array.splice(pos, 0, wallSlice);
     }
+};
+
+MapBuilder.prototype.setViewportY = function(newViewportY) {
+	var distanceTravelled = newViewportY - this.viewportY;
+	this.viewportY = newViewportY;
+	this.position.y += (distanceTravelled*0.8);
 };
