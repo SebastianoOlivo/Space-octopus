@@ -7,7 +7,8 @@ var canvas = document.querySelector('#game'),
     scrollSpeed = 6,
     activeListeners = false,
     animation,
-    requestAnimationFrameId;
+    requestAnimationFrameId,
+    setIntervalId;
 
 var requestId;
 
@@ -26,9 +27,15 @@ function game() {
     var scroller = new Scroller(stage);
     var maps = new MapGenerator(stage);
     maps.generateMap();
+    var points = 0;
 
     var squids = new Squid();
     Keyboard();
+
+    setIntervalId = setInterval(function(){
+        points += 1;
+        scrollSpeed += 0.01;
+    }, 9);
 
     function anim() {
         scroller.moveViewportYBy(scrollSpeed);
@@ -40,7 +47,15 @@ function game() {
                 var parent = value;
                 value.children.forEach(function(value, index, array) {
                     if(collisions(value, stage.children[7], parent)) {
-                        endGame();
+                        if(value.name == "rock") {
+                            endGame();
+                        } else {
+                            if(value.validity == true) {
+                                console.log(scrollSpeed);
+                                scrollSpeed *= 0.4;
+                                value.validity = false;
+                            }
+                        }
                         return;
                     }
                 })
@@ -57,5 +72,7 @@ function game() {
 function endGame() {
     stage = new PIXI.Container();
     cancelAnimationFrame(requestAnimationFrameId);
+    clearInterval(setIntervalId);
+    scrollSpeed = 5;
     game();
 }
