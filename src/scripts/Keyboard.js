@@ -12,7 +12,7 @@ function keyboard(keyCode) {
         move = true;
         function animation() {
             console.log('ease elem');
-            stage.children[6].position.x -= 12;
+            stage.children[7].position.x -= 12;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -25,7 +25,7 @@ function keyboard(keyCode) {
         move = true;
         function animation() {
             console.log('ease elem');
-            stage.children[6].position.x += 12;
+            stage.children[7].position.x += 12;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -38,7 +38,7 @@ function keyboard(keyCode) {
         move = true;
         function animation() {
             console.log('ease elem');
-            stage.children[6].position.y -= 12;
+            stage.children[7].position.y -= 12;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -51,7 +51,7 @@ function keyboard(keyCode) {
         move = true;
         function animation() {
             console.log('ease elem');
-            stage.children[6].position.y += 12;
+            stage.children[7].position.y += 12;
             if(move) {
                 requestAnimationFrame(animation);
             }
