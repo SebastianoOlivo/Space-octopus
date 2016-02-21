@@ -3,7 +3,7 @@ function MapBuilder(number) {
 
     this.number = number;
 
-    //this.createBorders();
+    this.createBorders();
     this.createRocks();
     this.createSushis();
     this.side = 'left';
@@ -18,8 +18,11 @@ MapBuilder.prototype = Object.create(PIXI.ParticleContainer.prototype);
 MapBuilder.prototype.createBorders = function() {
     this.borders = [];
 
-    this.addBorderSprites(6, "border_left.png");
-    this.addBorderSprites(6, "border_right.png");
+    this.addBorderSprites(3, "border01.png");
+    this.addBorderSprites(2, "border02.png");
+    this.addBorderSprites(2, "border03.png");
+    this.addBorderSprites(2, "border04.png");
+    this.addBorderSprites(2, "jellyfish.png");
 
     this.shuffle(this.borders);
 };
@@ -28,7 +31,11 @@ MapBuilder.prototype.addBorderSprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
         this.borderSide(sprite, this.side);
-        this.borders.push(sprite);
+        if (i % 2 == 0) {
+             sprite.scale.x = -1;
+        }
+
+        this.addChild(sprite);
     }
 };
 
@@ -69,11 +76,11 @@ MapBuilder.prototype.addSushisprites = function(amount, frameId) {
         var sushiSize = 0.8;
         sprite.scale.x = sushiSize;
         sprite.scale.y = sushiSize;
-        this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
+        this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT / (amount / i), MAP_HEIGHT / (amount / i) + (MAP_HEIGHT / amount));
         this.addChild(sprite);
     }
 };
- 
+
 MapBuilder.prototype.borderSide = function(elem, side) {
     elem.position.y = this.randomInt(0, MAP_HEIGHT - elem.height);
     if (side === 'left') {
@@ -90,7 +97,6 @@ MapBuilder.prototype.randomPos = function(elem, maxWidth, min, max) {
     elem.position.x = this.randomInt(0, (maxWidth - elem.width));
     elem.position.y = this.randomInt(min, max - elem.height);
 
-    return [elem.position.x, elem.position.y];
 }
 
 MapBuilder.prototype.randomInt = function(min, max) {
@@ -108,7 +114,7 @@ MapBuilder.prototype.shuffle = function(array) {
 };
 
 MapBuilder.prototype.setViewportY = function(newViewportY) {
-	var distanceTravelled = newViewportY - this.viewportY;
-	this.viewportY = newViewportY;
-	this.position.y += (distanceTravelled*0.8);
+    var distanceTravelled = newViewportY - this.viewportY;
+    this.viewportY = newViewportY;
+    this.position.y += (distanceTravelled * 0.8);
 };
