@@ -58,7 +58,8 @@ MapBuilder.prototype.addRocksprites = function(amount, frameId) {
         var randomSize = Math.random() * (0.7 - 1) + 0.7;
         sprite.scale.x = randomSize;
         sprite.scale.y = randomSize;
-        var originalPos = this.randomPos(sprite, GAMEWIDTH, 0, MAP_HEIGHT);
+        var originalPos = this.randomPos(sprite, GAMEWIDTH+20, -20, MAP_HEIGHT);
+        sprite.name = 'rock';
         this.addChild(sprite);
     }
 };
@@ -75,6 +76,8 @@ MapBuilder.prototype.addSushisprites = function(amount, frameId) {
         var sushiSize = 0.8;
         sprite.scale.x = sushiSize;
         sprite.scale.y = sushiSize;
+        sprite.name = "sushi";
+        sprite.validity = true;
         this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT / (amount / i), MAP_HEIGHT / (amount / i) + (MAP_HEIGHT / amount));
         this.addChild(sprite);
     }
