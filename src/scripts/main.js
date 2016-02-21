@@ -52,7 +52,7 @@ function game() {
                         } else {
                             if(value.validity == true) {
                                 console.log(scrollSpeed);
-                                scrollSpeed *= 0.4;
+                                scrollSpeed *= 0.4; 
                                 value.validity = false;
                             }
                         }
