@@ -137,20 +137,20 @@
 },
 "far_debut.png":
 {
-	"frame": {"x":0,"y":726,"w":402,"h":601},
+	"frame": {"x":0,"y":726,"w":401,"h":600},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":402,"h":601},
-	"sourceSize": {"w":402,"h":601},
+	"spriteSourceSize": {"x":0,"y":0,"w":401,"h":600},
+	"sourceSize": {"w":401,"h":600},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "far.png":
 {
-	"frame": {"x":0,"y":1327,"w":402,"h":601},
+	"frame": {"x":0,"y":1326,"w":401,"h":600},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":402,"h":601},
-	"sourceSize": {"w":402,"h":601},
+	"spriteSourceSize": {"x":0,"y":0,"w":401,"h":600},
+	"sourceSize": {"w":401,"h":600},
 	"pivot": {"x":0.5,"y":0.5}
 }},
 "meta": {
@@ -158,8 +158,8 @@
 	"version": "1.0",
 	"image": "spriteSheet.png",
 	"format": "RGBA8888",
-	"size": {"w":402,"h":1928},
+	"size": {"w":401,"h":1926},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:041f9187b1a1c65bad693ca608f7f888:ee635cfe0aa408fbabd862f46ea25240:ea5d22e715ea7a530878e244f6ee1006$"
+	"smartupdate": "$TexturePacker:SmartUpdate:562834091719d4b6fb04d8f3b182d744:e7831e017824e88d27abc6b5aeb2c162:ea5d22e715ea7a530878e244f6ee1006$"
 }
 }
