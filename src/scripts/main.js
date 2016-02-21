@@ -12,11 +12,11 @@ var renderer = PIXI.autoDetectRenderer(GAMEWIDTH, GAMEHEIGHT, {
 var stage = new PIXI.Container();
 
 // Load assets
-PIXI.loader.add('sprites/spriteSheet.json').load(game);
+PIXI.loader.add('sprites/spriteSheet_test.json').load(game);
 
 // Game process method
 function game() {
-    SPRITEID = PIXI.loader.resources['sprites/spriteSheet.json'].textures;
+    SPRITEID = PIXI.loader.resources['sprites/spriteSheet_test.json'].textures;
 
     var scroller = new Scroller(stage);
     var maps = new MapGenerator(stage);
