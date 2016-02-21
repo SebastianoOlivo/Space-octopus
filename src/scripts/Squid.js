@@ -29,4 +29,14 @@ Squid.prototype.outOfScreen = function() {
         console.log('right');
         this.squids[0].position.x = 400
     }
+
+    if(this.squids[0].position.y >= GAMEWIDTH+130) {
+        console.log('bottom');
+        this.squids[0].position.y = GAMEWIDTH+130;
+    }
+
+    if(this.squids[0].position.y <= 0) {
+        console.log('bottom');
+        this.squids[0].position.y = 0;
+    }
 }

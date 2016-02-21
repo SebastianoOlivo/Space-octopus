@@ -78,6 +78,13 @@ MapBuilder.prototype.addSushisprites = function(amount, frameId) {
         sprite.scale.y = sushiSize;
         sprite.name = "sushi";
         sprite.validity = true;
+
+        sprite.vanish = function() {
+            console.log(sprite);
+            sprite.alpha = 0.5;
+            sprite.scale.x = 10;
+            sprite.scale.y = 10;
+        };
         this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT / (amount / i), MAP_HEIGHT / (amount / i) + (MAP_HEIGHT / amount));
         this.addChild(sprite);
     }

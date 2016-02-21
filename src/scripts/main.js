@@ -73,8 +73,10 @@ function game() {
                             endGame();
                         } else {
                             if (value.validity == true) {
-                                console.log(scrollSpeed);
-                                scrollSpeed *= 0.4; 
+                                console.log('boum', value);
+                                value.vanish();
+                                value.scale.x = 0.5;
+                                scrollSpeed *= 0.4;
                                 value.validity = false;
                             }
                         }

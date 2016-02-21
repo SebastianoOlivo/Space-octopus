@@ -9,8 +9,10 @@ function Keyboard(keyCode) {
     //The `downHandler`
     function easeLeft() {
         move = true;
+        stage.children[7].skew.x = -0.2;
+        stage.children[7].scale.y = 0.55;
         function animation() {
-            stage.children[7].position.x -= 10;
+            stage.children[7].position.x -= 7;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -21,8 +23,10 @@ function Keyboard(keyCode) {
 
     function easeRight() {
         move = true;
+        stage.children[7].skew.x = 0.2;
+        stage.children[7].scale.y = 0.55;
         function animation() {
-            stage.children[7].position.x += 10;
+            stage.children[7].position.x += 7;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -33,8 +37,9 @@ function Keyboard(keyCode) {
 
     function easeTop() {
         move = true;
+        stage.children[7].scale.y = 0.7;
         function animation() {
-            stage.children[7].position.y -= 10;
+            stage.children[7].position.y -= 7;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -45,8 +50,9 @@ function Keyboard(keyCode) {
 
     function easeBottom() {
         move = true;
+        stage.children[7].scale.y = 0.5;
         function animation() {
-            stage.children[7].position.y += 10;
+            stage.children[7].position.y += 7;
             if(move) {
                 requestAnimationFrame(animation);
             }
@@ -75,13 +81,10 @@ function Keyboard(keyCode) {
     };
 
     //The `upHandler`
-    key.upHandler = function(event) {
+    key.upHandler = function(event) { 
         move = false;
-        if (event.keyCode === key.code) {
-            if (key.isDown && key.release) key.release();
-            key.isDown = false;
-            key.isUp = true;
-        }
+        stage.children[7].skew.x = 0;
+        stage.children[7].scale.y = 0.6;
         event.preventDefault();
     };
 
