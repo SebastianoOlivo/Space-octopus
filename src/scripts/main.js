@@ -22,8 +22,6 @@ function game() {
     var maps = new MapGenerator(stage);
     maps.generateMap();
 
-    console.log(maps.maps[0].children);
-
     var squids = new Squid();
 
     //var octopus = new SpriteLoader(stage, 'octopus.jpg');

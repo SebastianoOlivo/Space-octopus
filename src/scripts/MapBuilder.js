@@ -48,12 +48,11 @@ MapBuilder.prototype.addRocksprites = function(amount, frameId) {
 
     for (i; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
-        var randomSize = Math.random() * (0.5 - 0.9) + 0.5;
-        console.log(randomSize);
+        var randomSize = Math.random() * (0.7 - 1) + 0.7;
         sprite.scale.x = randomSize;
         sprite.scale.y = randomSize;
         //console.log(MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount), MAP_HEIGHT/(amount/i));
-        var originalPos = this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
+        var originalPos = this.randomPos(sprite, GAMEWIDTH, 0, MAP_HEIGHT);
         this.addChild(sprite);
     }
 };
@@ -74,7 +73,7 @@ MapBuilder.prototype.addSushisprites = function(amount, frameId) {
         this.addChild(sprite);
     }
 };
-
+ 
 MapBuilder.prototype.borderSide = function(elem, side) {
     elem.position.y = this.randomInt(0, MAP_HEIGHT - elem.height);
     if (side === 'left') {

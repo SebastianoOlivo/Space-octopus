@@ -14,8 +14,6 @@ MapGenerator.prototype.generateMap = function() {
 		this.maps.push(map);
 	};
 
-	console.log(this.maps);
-
 	this.maps.forEach(function(value, index, array) {
 		MapGenerator.prototype.addMapToStage(array[index], GAMEHEIGHT);
 	})
@@ -39,6 +37,7 @@ MapGenerator.prototype.setViewportY = function(units) {
 MapGenerator.prototype.digestMapCycle = function() {
 	if(this.maps[0].position.y+GAMEHEIGHT === 0) {
 		this.maps[1].position.y = -MAP_HEIGHT;
+		console.log('add');
 	}
 
 	if(this.maps[0].position.y-GAMEHEIGHT >= 0) {
