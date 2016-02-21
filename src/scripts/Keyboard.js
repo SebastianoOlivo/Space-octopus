@@ -29,12 +29,12 @@ Keyboard.prototype.upHandler = function(event) {
 };
 
 
-window.addEventListener(
+/*window.addEventListener(
     "keydown", this.downHandler.bind(this), false
 );
 window.addEventListener(
     "keyup", this.upHandler.bind(this), false
-);
+);*/
 
 
 /*

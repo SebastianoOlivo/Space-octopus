@@ -1,4 +1,4 @@
-MapGenerator.prototype.hitTest = function(elem1, elem1X, elem1Y, elem2) {
+ function Collisions(elem1, elem1X, elem1Y, elem2) {
 
     var hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
 

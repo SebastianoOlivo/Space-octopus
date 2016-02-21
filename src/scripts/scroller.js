@@ -1,9 +1,6 @@
 function Scroller(stage) {
-	this.far = new Background(0.4, 'far.png', 400, 600);
+	this.far = new Background(0.2, 'far.png', 400, 600);
 	stage.addChild(this.far);
-
-	this.octopus = new MovingItem('octopus.jpg');
-	stage.addChild(this.octopus);
 
 	this.viewportY= 0;
 }

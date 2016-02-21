@@ -30,7 +30,6 @@ MapGenerator.prototype.addMapToStage = function(map, pos) {
 
 MapGenerator.prototype.setViewportY = function(units) {
 	var y = this.displayedMaps-1;
-
 	this.digestMapCycle();
 
 	this.maps[0].setViewportY(this.maps[0].viewportY + units);
@@ -40,11 +39,9 @@ MapGenerator.prototype.setViewportY = function(units) {
 MapGenerator.prototype.digestMapCycle = function() {
 	if(this.maps[0].position.y+GAMEHEIGHT === 0) {
 		this.maps[1].position.y = -MAP_HEIGHT;
-		console.log('add');
 	}
 
 	if(this.maps[0].position.y-GAMEHEIGHT >= 0) {
-		console.log('remove');
 		this.maps[0].position.y = -MAP_HEIGHT;
 		var item = this.maps.shift();
 		this.maps.push(item);

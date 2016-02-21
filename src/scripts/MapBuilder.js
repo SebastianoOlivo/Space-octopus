@@ -3,7 +3,7 @@ function MapBuilder(number) {
 
     this.number = number;
 
-    this.createBorders();
+    //this.createBorders();
     this.createRocks();
     this.createSushis();
     this.side = 'left';
@@ -34,9 +34,13 @@ MapBuilder.prototype.addBorderSprites = function(amount, frameId) {
 
 
 MapBuilder.prototype.createRocks = function() {
-    this.addRocksprites(2, "rock01.png");
+    this.addRocksprites(1, "rock01.png");
     this.addRocksprites(1, "rock02.png");
-    this.addRocksprites(3, "rock03.png");
+    this.addRocksprites(1, "rock03.png");
+    this.addRocksprites(1, "rock04.png");
+    this.addRocksprites(1, "rock05.png");
+    this.addRocksprites(1, "rock06.png");
+    this.addRocksprites(1, "rock07.png");
 };
 
 MapBuilder.prototype.addRocksprites = function(amount, frameId) {
@@ -44,8 +48,12 @@ MapBuilder.prototype.addRocksprites = function(amount, frameId) {
 
     for (i; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
+        var randomSize = Math.random() * (0.5 - 0.9) + 0.5;
+        console.log(randomSize);
+        sprite.scale.x = randomSize;
+        sprite.scale.y = randomSize;
         //console.log(MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount), MAP_HEIGHT/(amount/i));
-        this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
+        var originalPos = this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
         this.addChild(sprite);
     }
 };
@@ -54,12 +62,14 @@ MapBuilder.prototype.addRocksprites = function(amount, frameId) {
 MapBuilder.prototype.createSushis = function() {
     this.addSushisprites(1, "sushi01.png");
     this.addSushisprites(1, "sushi02.png");
-    this.addSushisprites(1, "sushi03.png");
 };
 
 MapBuilder.prototype.addSushisprites = function(amount, frameId) {
     for (var i = 0; i < amount; i++) {
         var sprite = PIXI.Sprite.fromFrame(frameId);
+        var sushiSize = 0.8;
+        sprite.scale.x = sushiSize;
+        sprite.scale.y = sushiSize;
         this.randomPos(sprite, GAMEWIDTH, MAP_HEIGHT/(amount/i), MAP_HEIGHT/(amount/i)+(MAP_HEIGHT/amount));
         this.addChild(sprite);
     }
@@ -70,9 +80,7 @@ MapBuilder.prototype.borderSide = function(elem, side) {
     if (side === 'left') {
         elem.position.x = 0;
         this.side = 'right';
-
     } else {
-
         elem.position.x = 400;
         this.side = 'left';
 
@@ -80,8 +88,10 @@ MapBuilder.prototype.borderSide = function(elem, side) {
 }
 
 MapBuilder.prototype.randomPos = function(elem, maxWidth, min, max) {
-    elem.position.x = this.randomInt(0-GAMEWIDTH/5, (maxWidth - elem.width)+GAMEWIDTH/5);
+    elem.position.x = this.randomInt(0, (maxWidth - elem.width));
     elem.position.y = this.randomInt(min, max - elem.height);
+
+    return [elem.position.x, elem.position.y];
 }
 
 MapBuilder.prototype.randomInt = function(min, max) {

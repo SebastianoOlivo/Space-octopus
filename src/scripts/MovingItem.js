@@ -7,7 +7,6 @@ MovingItem  = function (image, width, height){
 
     this.position.x = 80;
     this.position.y = 300;
-
 }
 
 MovingItem.constructor = MovingItem;

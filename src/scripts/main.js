@@ -2,7 +2,7 @@
 var canvas = document.querySelector('#game'),
     GAMEWIDTH = canvas.width,
     GAMEHEIGHT = canvas.height,
-    SCROLLSPEED = 5,
+    SCROLLSPEED = 6,
     MAP_HEIGHT = 1800,
     SPRITEID;
 
@@ -12,21 +12,28 @@ var renderer = PIXI.autoDetectRenderer(GAMEWIDTH, GAMEHEIGHT, {
 var stage = new PIXI.Container();
 
 // Load assets
-PIXI.loader.add('sprites/testSprite.json').load(game);
+PIXI.loader.add('sprites/spriteSheet.json').load(game);
 
 // Game process method
 function game() {
-    SPRITEID = PIXI.loader.resources['sprites/testSprite.json'].textures;
+    SPRITEID = PIXI.loader.resources['sprites/spriteSheet.json'].textures;
 
     var scroller = new Scroller(stage);
-    var viewport = new MapGenerator(stage);
-    viewport.generateMap();
+    var maps = new MapGenerator(stage);
+    maps.generateMap();
+
+    console.log(maps.maps[0].children);
+
+    var squids = new Squid();
 
     //var octopus = new SpriteLoader(stage, 'octopus.jpg');
 
     function anim() {
         scroller.moveViewportYBy(SCROLLSPEED);
-        viewport.moveViewportYBy(SCROLLSPEED);
+        maps.moveViewportYBy(SCROLLSPEED);
+
+        //var collisions = new Collisions();
+
         renderer.render(stage);
         requestAnimationFrame(anim);
     }
