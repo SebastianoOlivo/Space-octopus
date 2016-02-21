@@ -3,9 +3,9 @@ function Squid() {
 }
 
 Squid.prototype.addSquid = function() {
-    var octopus = new MovingItem('octopus.png');
-    octopus.scale.x = 0.8;
-    octopus.scale.y = 0.8;
-    octopus.name = "lola";
-	stage.addChild(octopus);
+    this.octopus = new MovingItem('octopus.png');
+    this.octopus.scale.x = 0.8;
+    this.octopus.scale.y = 0.8;
+    this.octopus.name = "lola";
+	stage.addChild(this.octopus);
 }

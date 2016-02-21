@@ -24,16 +24,26 @@ function game() {
 
     var squids = new Squid();
 
-    //var octopus = new SpriteLoader(stage, 'octopus.jpg');
-    console.log(stage.children);
+    keyboard();
 
     function anim() {
         scroller.moveViewportYBy(scrollSpeed);
         maps.moveViewportYBy(scrollSpeed);
 
-        if(collisions(stage.children[6], stage.children[1]) === true || collisions(stage.children[6], stage.children[2]) === true || collisions(stage.children[6], stage.children[3]) === true || collisions(stage.children[6], stage.children[4]) === true || collisions(stage.children[6], stage.children[5]) === true) {
-            scrollSpeed = 0;
-        }
+        stage.children.forEach(function(value, index, array) {
+            if(MapBuilder.prototype.isPrototypeOf(value)) {
+                var parent = value;
+                value.children.forEach(function(value, index, array) {
+                    if(collisions(value, stage.children[6], parent)) {
+                        console.log('BOUM');
+                        console.log(value);
+                        scrollSpeed = 0;
+                        stage.children[6].position.y += 2;
+                        return
+                    }
+                })
+            }
+        })
 
         renderer.render(stage);
         requestAnimationFrame(anim);

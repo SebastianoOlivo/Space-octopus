@@ -1,4 +1,4 @@
- function collisions(elem1, elem2) {
+ function collisions(elem1, elem2, parent) {
 
     var hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
 
@@ -6,8 +6,8 @@
     hit = false;
 
     //Find the center points of each sprite
-    elem1.centerX = elem1.x + elem1.width / 2;
-    elem1.centerY = elem1.y + elem1.height / 2;
+    elem1.centerX = parent.toGlobal(elem1.position).x + elem1.width / 2;
+    elem1.centerY = parent.toGlobal(elem1.position).y + elem1.height / 2;
     elem2.centerX = elem2.x + elem2.width / 2;
     elem2.centerY = elem2.y + elem2.height / 2;
 
@@ -29,7 +29,7 @@
     if (Math.abs(vx) < combinedHalfWidths) {
 
         //A collision might be occuring. Check for a collision on the y axis
-        if (Math.abs(vy) < combinedHalfHeights) {
+        if (Math.abs(vy) < combinedHalfHeights*0.5) {
 
             //There's definitely a collision happening
             hit = true;
