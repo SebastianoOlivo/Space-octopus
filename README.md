@@ -1,3 +1,3 @@
-# Space-octopus
+# Squid Odyssey 
 
-Fuck me, right ?
+Game developped during the Koding hackathon 
