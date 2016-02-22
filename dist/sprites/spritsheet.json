@@ -1,0 +1,165 @@
+{"frames": {
+
+"sushi01.png":
+{
+	"frame": {"x":0,"y":0,"w":100,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":39},
+	"sourceSize": {"w":100,"h":39},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"sushi02.png":
+{
+	"frame": {"x":100,"y":0,"w":86,"h":41},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":86,"h":41},
+	"sourceSize": {"w":86,"h":41},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"jellyfish.png":
+{
+	"frame": {"x":186,"y":0,"w":42,"h":81},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":81},
+	"sourceSize": {"w":42,"h":81},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock05.png":
+{
+	"frame": {"x":228,"y":0,"w":162,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":162,"h":98},
+	"sourceSize": {"w":162,"h":98},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock06.png":
+{
+	"frame": {"x":0,"y":98,"w":47,"h":121},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":47,"h":121},
+	"sourceSize": {"w":47,"h":121},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"octopus.png":
+{
+	"frame": {"x":47,"y":98,"w":88,"h":136},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":136},
+	"sourceSize": {"w":88,"h":136},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock02.png":
+{
+	"frame": {"x":135,"y":98,"w":99,"h":151},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":99,"h":151},
+	"sourceSize": {"w":99,"h":151},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock04.png":
+{
+	"frame": {"x":234,"y":98,"w":130,"h":155},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":155},
+	"sourceSize": {"w":130,"h":155},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"border04.png":
+{
+	"frame": {"x":0,"y":253,"w":53,"h":160},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":53,"h":160},
+	"sourceSize": {"w":53,"h":160},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock01.png":
+{
+	"frame": {"x":53,"y":253,"w":109,"h":174},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":109,"h":174},
+	"sourceSize": {"w":109,"h":174},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock07.png":
+{
+	"frame": {"x":162,"y":253,"w":78,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":78,"h":194},
+	"sourceSize": {"w":78,"h":194},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"rock03.png":
+{
+	"frame": {"x":240,"y":253,"w":91,"h":204},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":91,"h":204},
+	"sourceSize": {"w":91,"h":204},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"border02.png":
+{
+	"frame": {"x":0,"y":457,"w":84,"h":211},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":84,"h":211},
+	"sourceSize": {"w":84,"h":211},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"border01.png":
+{
+	"frame": {"x":84,"y":457,"w":83,"h":236},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":83,"h":236},
+	"sourceSize": {"w":83,"h":236},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"border03.png":
+{
+	"frame": {"x":167,"y":457,"w":110,"h":269},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":269},
+	"sourceSize": {"w":110,"h":269},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"far_debut.png":
+{
+	"frame": {"x":0,"y":726,"w":402,"h":601},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":402,"h":601},
+	"sourceSize": {"w":402,"h":601},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"far.png":
+{
+	"frame": {"x":0,"y":1327,"w":402,"h":601},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":402,"h":601},
+	"sourceSize": {"w":402,"h":601},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "spritsheet.png",
+	"format": "RGBA8888",
+	"size": {"w":402,"h":1928},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:646928ffe1cac1fb7511500d150fa7f7:ee635cfe0aa408fbabd862f46ea25240:ad6096a49b7707272127e472ffd79529$"
+}
+}
