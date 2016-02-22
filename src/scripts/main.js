@@ -8,7 +8,9 @@ var canvas = document.querySelector('#game'),
     activeListeners = false,
     animation,
     requestAnimationFrameId,
-    setIntervalId;
+    setIntervalId,
+    currentScore = 0,
+    bestScore = 0;
 
 var requestId;
 
@@ -20,27 +22,27 @@ var stage = new PIXI.Container();
 // Load assets
 PIXI.loader.add('sprites/spriteSheet.json').load(game);
 
-    sounds.load(['audio/ambiance.mp3', 'audio/impact.mp3', 'audio/last_breath.mp3', 'audio/monster_attack.mp3', 'audio/splash.mp3']);
-    sounds.whenLoaded = soudLoaded;
+sounds.load(['audio/ambiance.mp3', 'audio/impact.mp3', 'audio/last_breath.mp3', 'audio/monster_attack.mp3', 'audio/splash.mp3']);
+sounds.whenLoaded = soudLoaded;
 
-    var ambiance = '',
-        impact = '',
-        last_breath = '',
-        monster_attack = '',
-        splash = '';
+var ambiance = '',
+    impact = '',
+    last_breath = '',
+    monster_attack = '',
+    splash = '';
 
 
-    function soudLoaded() {
-        console.log(sounds);
+function soudLoaded() {
+    console.log(sounds);
 
-        ambiance = new Player('audio/ambiance.mp3', true);
-        impact = new Player('audio/impact.mp3');
-        last_breath = new Player('audio/last_breath.wma');
-        monster_attack = new Player('audio/monster_attack.mp3');
-        splash = new Player('audio/splash.wma');
-        ambiance.loadSound();
-        ambiance.playSound();
-    }
+    ambiance = new Player('audio/ambiance.mp3', true);
+    impact = new Player('audio/impact.mp3');
+    last_breath = new Player('audio/last_breath.wma');
+    monster_attack = new Player('audio/monster_attack.mp3');
+    splash = new Player('audio/splash.wma');
+    ambiance.loadSound();
+    ambiance.playSound();
+}
 
 // Game process method
 function game() {
@@ -49,20 +51,24 @@ function game() {
     var scroller = new Scroller(stage);
     var maps = new MapGenerator(stage);
     maps.generateMap();
-    var points = 0;
+    currentScore = 0;
 
     var squids = new Squid();
     Keyboard();
 
+    scoring = new Scoring();
+
     setIntervalId = setInterval(function() {
-        points += 1;
-        scrollSpeed += 0.01;
+        currentScore += 0.08;
+        scrollSpeed += 0.007;
     }, 9);
 
     function anim() {
         scroller.moveViewportYBy(scrollSpeed);
         maps.moveViewportYBy(scrollSpeed);
         squids.outOfScreen();
+        scoring.setScore(currentScore);
+        scoring.setBestScore(bestScore);
 
         stage.children.forEach(function(value, index, array) {
             if (MapBuilder.prototype.isPrototypeOf(value)) {
@@ -70,13 +76,12 @@ function game() {
                 value.children.forEach(function(value, index, array) {
                     if (collisions(value, stage.children[7], parent)) {
                         if (value.name == "rock") {
-                            endGame();
+                            endGame(currentScore);
                         } else {
                             if (value.validity == true) {
-                                console.log('boum', value);
-                                value.vanish();
-                                value.scale.x = 0.5;
-                                scrollSpeed *= 0.4;
+                                currentScore += 10;
+                                value.position.x = - GAMEWIDTH;
+                                scrollSpeed *= 0.7;
                                 value.validity = false;
                             }
                         }
@@ -93,7 +98,13 @@ function game() {
 }
 
 //game over
-function endGame() {
+function endGame(currentScore) {
+    console.log(currentScore);
+    if(currentScore > bestScore) {
+        bestScore = currentScore;
+    }
+    currentScore = 0;
+    console.log(bestScore);
     stage = new PIXI.Container();
     cancelAnimationFrame(requestAnimationFrameId);
     clearInterval(setIntervalId);

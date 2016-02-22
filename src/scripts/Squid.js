@@ -21,13 +21,13 @@ Squid.prototype.addSquid = function() {
 }
 
 Squid.prototype.outOfScreen = function() {
-    if(this.squids[0].position.x > 400) {
+    if(this.squids[0].position.x+(this.squids[0].width/2) > 400) {
         console.log('left');
-        this.squids[0].position.x = -this.squids[0].width;
+        this.squids[0].position.x = -(this.squids[0].width)/2;
     }
-    if(this.squids[0].position.x < -this.squids[0].width) {
+    if(this.squids[0].position.x < -(this.squids[0].width/2)) {
         console.log('right');
-        this.squids[0].position.x = 400
+        this.squids[0].position.x = 400-(this.squids[0].width/2);
     }
 
     if(this.squids[0].position.y >= GAMEWIDTH+130) {
