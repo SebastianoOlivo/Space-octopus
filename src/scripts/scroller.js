@@ -1,8 +1,8 @@
 function Scroller(stage) {
-	this.far = new Background(0.2, 'far.png', 400, 600);
-	stage.addChild(this.far);
-	this.mid = new Background(0.4, 'mid.png', 400, 600);
-	stage.addChild(this.mid);
+	this.far = new Background(0.2, 'far.png', GAMEWIDTH, 600);
+	stage.addChildAt(this.far, 0);
+	this.mid = new Background(0.4, 'mid.png', GAMEWIDTH, 600);
+	stage.addChildAt(this.mid, 1);
 
 	this.viewportY= 0;
 }

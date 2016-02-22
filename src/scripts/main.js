@@ -10,7 +10,8 @@ var canvas = document.querySelector('#game'),
     requestAnimationFrameId,
     setIntervalId,
     currentScore = 0,
-    bestScore = 0;
+    bestScore = 0,
+    panel;
 
 var requestId;
 
@@ -20,7 +21,7 @@ var renderer = PIXI.autoDetectRenderer(GAMEWIDTH, GAMEHEIGHT, {
 var stage = new PIXI.Container();
 
 // Load assets
-PIXI.loader.add('sprites/spriteSheet.json').load(game);
+PIXI.loader.add('sprites/spriteSheet.json').load(showPanel);
 
 sounds.load(['audio/ambiance.mp3', 'audio/impact.mp3', 'audio/last_breath.mp3', 'audio/monster_attack.mp3', 'audio/splash.mp3']);
 sounds.whenLoaded = soudLoaded;
@@ -33,8 +34,6 @@ var ambiance = '',
 
 
 function soudLoaded() {
-    console.log(sounds);
-
     ambiance = new Player('audio/ambiance.mp3', true);
     impact = new Player('audio/impact.mp3');
     last_breath = new Player('audio/last_breath.wma');
@@ -44,10 +43,39 @@ function soudLoaded() {
     ambiance.playSound();
 }
 
+function showPanel() {
+    SPRITEID = PIXI.loader.resources['sprites/spriteSheet.json'].textures;
+    panel = new Panel();
+    window.addEventListener("keydown", game, false);
+}
+
 // Game process method
 function game() {
-    SPRITEID = PIXI.loader.resources['sprites/spriteSheet.json'].textures;
 
+    // create a filter
+    var blurFilter = new PIXI.filters.PixelateFilter();
+
+    // set the filter
+    stage.filters = [blurFilter];
+
+    var coords = { x: 0, y: 16 };
+    var tween = new TWEEN.Tween(coords)
+        .to({ x: 0, y: 1 }, 500)
+        .onUpdate(function() {
+            blurFilter.size.y = this.y;
+            blurFilter.size.x = this.y;
+        })
+        .start();
+
+    requestAnimationFrame(animate);
+
+    function animate(time) {
+        requestAnimationFrame(animate);
+        TWEEN.update(time);
+    }
+
+    panel.removePanel();
+    window.removeEventListener("keydown", game, false);
     var scroller = new Scroller(stage);
     var maps = new MapGenerator(stage);
     maps.generateMap();
@@ -60,7 +88,7 @@ function game() {
 
     setIntervalId = setInterval(function() {
         currentScore += 0.08;
-        scrollSpeed += 0.007;
+        scrollSpeed += 0.002;
     }, 9);
 
     function anim() {
@@ -99,15 +127,13 @@ function game() {
 
 //game over
 function endGame(currentScore) {
-    console.log(currentScore);
     if(currentScore > bestScore) {
         bestScore = currentScore;
     }
     currentScore = 0;
-    console.log(bestScore);
     stage = new PIXI.Container();
     cancelAnimationFrame(requestAnimationFrameId);
     clearInterval(setIntervalId);
     scrollSpeed = 5;
-    game();
+    setTimeout(showPanel, 100);
 }

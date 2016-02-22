@@ -162,7 +162,7 @@ Define the audio context
 ------------------------
 
 All this code uses a single `AudioContext` If you want to use any of these functions
-independently of this file, make sure that have an `AudioContext` called `actx`. 
+independently of this file, make sure that have an `AudioContext` called `actx`.
 */
 var actx = new AudioContext();
 
@@ -170,17 +170,17 @@ var actx = new AudioContext();
 sounds
 ------
 
-`sounds` is an object that you can use to store all your loaded sound fles. 
+`sounds` is an object that you can use to store all your loaded sound fles.
 It also has a helpful `load` method that manages asset loading. You can load sounds at
 any time during the game by using the `sounds.load` method. You don't have to use
-the `sounds` object or its `load` method, but it's a really convenient way to 
+the `sounds` object or its `load` method, but it's a really convenient way to
 work with sound file assets.
 
-Here's how could use the `sound` object to load three sound files from a `sounds` folder and 
+Here's how could use the `sound` object to load three sound files from a `sounds` folder and
 call a `setup` method when all the files have finished loading:
 
     sounds.load([
-      "sounds/shoot.wav", 
+      "sounds/shoot.wav",
       "sounds/music.wav",
       "sounds/bounce.mp3"
     ]);
@@ -210,7 +210,6 @@ var sounds = {
   //`assets.load(["images/anyImage.png", "fonts/anyFont.otf"]);`.
 
   load: function(sources) {
-    console.log("Loading sounds..");
 
     //Get a reference to this asset object so we can
     //refer to it in the `forEach` loop ahead.
@@ -244,7 +243,6 @@ var sounds = {
 
       //Display a message if the file type isn't recognized.
       else {
-        console.log("File type not recognized: " + source);
       }
     });
   },
@@ -254,13 +252,10 @@ var sounds = {
   loadHandler: function () {
     var self = this;
     self.loaded += 1;
-    console.log(self.loaded);
-
     //Check whether everything has loaded.
     if (self.toLoad === self.loaded) {
 
       //If it has, run the callback function that was assigned to the `whenLoaded` property
-      console.log("Sounds finished loading");
 
       //Reset `loaded` and `toLoaded` so we can load more assets
       //later if we want to.
@@ -277,15 +272,15 @@ makeSound
 
 `makeSound` is the function you want to use to load and play sound files.
 It creates and returns and WebAudio sound object with lots of useful methods you can
-use to control the sound. 
+use to control the sound.
 You can use it to load a sound like this:
 
     var anySound = makeSound("sounds/anySound.mp3", loadHandler);
 
 
 The code above will load the sound and then call the `loadHandler`
-when the sound has finished loading. 
-(However, it's more convenient to load the sound file using 
+when the sound has finished loading.
+(However, it's more convenient to load the sound file using
 the `sounds.load` method described above, so I don't recommend loading sounds
 like this unless you need more low-level control.)
 
@@ -303,8 +298,8 @@ After the sound has been loaded you can access and use it like this:
       anySound.setEcho(0.2, 0.2, 0);
       anySound.playbackRate = 0.5;
     }
-   
-For advanced configurations, you can optionally supply `makeSound` with optional 3rd and 
+
+For advanced configurations, you can optionally supply `makeSound` with optional 3rd and
 4th arguments:
 
    var anySound = makeSound(source, loadHandler, loadTheSound?, xhrObject);
@@ -314,7 +309,7 @@ from being loaded. You would only want to set it to `false` like this if you wer
 using another file loading library to load the sound, and didn't want it to be loaded
 twice.
 
-`xhrObject`, the optional 4th argument, is the XHR object that was used to load the sound. Again, you 
+`xhrObject`, the optional 4th argument, is the XHR object that was used to load the sound. Again, you
 would only supply this if you were using another file loading library to load the sound,
 and that library had generated its own XHR object. If you supply the `xhr` argument, `makeSound`
 will skip the file loading step (because you've already done that), but still decode the audio buffer for you.
@@ -384,7 +379,7 @@ function makeSound(source, loadHandler, loadSound, xhr) {
   //Reverb properties
   o.reverb = false;
   o.reverbImpulse = null;
-  
+
   //The sound object's methods.
   o.play = function() {
 
@@ -408,7 +403,7 @@ function makeSound(source, loadHandler, loadSound, xhr) {
     //If there's no reverb, bypass the convolverNode
     if (o.reverb === false) {
       o.volumeNode.connect(o.panNode);
-    } 
+    }
 
     //If there is reverb, connect the `convolverNode` and apply
     //the impulse response
@@ -417,7 +412,7 @@ function makeSound(source, loadHandler, loadSound, xhr) {
       o.convolverNode.connect(o.panNode);
       o.convolverNode.buffer = o.reverbImpulse;
     }
-    
+
     //Connect the `panNode` to the destination to complete the chain.
     o.panNode.connect(actx.destination);
 
@@ -523,19 +518,19 @@ function makeSound(source, loadHandler, loadSound, xhr) {
 
   //Fade a sound in, from an initial volume level of zero.
   o.fadeIn = function(durationInSeconds) {
-    
+
     //Set the volume to 0 so that you can fade
     //in from silence
     o.volumeNode.gain.value = 0;
     o.fade(1, durationInSeconds);
-  
+
   };
 
   //Fade a sound out, from its current volume level to zero.
   o.fadeOut = function(durationInSeconds) {
     o.fade(0, durationInSeconds);
   };
-  
+
   //Volume and pan getters/setters.
   Object.defineProperties(o, {
     volume: {
@@ -550,7 +545,7 @@ function makeSound(source, loadHandler, loadSound, xhr) {
     },
 
     //The pan node uses the high-efficiency stereo panner, if it's
-    //available. But, because this is a new addition to the 
+    //available. But, because this is a new addition to the
     //WebAudio spec, it might not be available on all browsers.
     //So the code checks for this and uses the older 3D panner
     //if 2D isn't available.
@@ -606,13 +601,13 @@ function loadSound(o, source, loadHandler) {
 
   //When the sound has finished loading, decode it using the
   //`decodeAudio` function (which you'll see ahead)
-  xhr.addEventListener("load", decodeAudio.bind(this, o, xhr, loadHandler)); 
+  xhr.addEventListener("load", decodeAudio.bind(this, o, xhr, loadHandler));
 
   //Send the request to load the file.
   xhr.send();
 }
 
-//The `decodeAudio` function decodes the audio file for you and 
+//The `decodeAudio` function decodes the audio file for you and
 //launches the `loadHandler` when it's done
 function decodeAudio(o, xhr, loadHandler) {
 
@@ -722,7 +717,7 @@ function soundEffect(
   if (!actx.createStereoPanner) {
     pan.setPosition(panValue, 0, 1 - Math.abs(panValue));
   } else {
-    pan.pan.value = panValue; 
+    pan.pan.value = panValue;
   }
   oscillator.type = type;
 
@@ -756,7 +751,7 @@ function soundEffect(
   play(oscillator);
 
   //The helper functions:
-  
+
   function addReverb(volumeNode) {
     var convolver = actx.createConvolver();
     convolver.buffer = impulseResponse(reverb[0], reverb[1], reverb[2], actx);
@@ -832,11 +827,11 @@ function soundEffect(
     //If `reverse` is true, make the sound drop in pitch
     if (!reverse) {
       oscillatorNode.frequency.linearRampToValueAtTime(
-        frequency, 
+        frequency,
         actx.currentTime + wait
       );
       oscillatorNode.frequency.linearRampToValueAtTime(
-        frequency - pitchBendAmount, 
+        frequency - pitchBendAmount,
         actx.currentTime + wait + attack + decay
       );
     }
@@ -845,11 +840,11 @@ function soundEffect(
     //jumping sounds
     else {
       oscillatorNode.frequency.linearRampToValueAtTime(
-        frequency, 
+        frequency,
         actx.currentTime + wait
       );
       oscillatorNode.frequency.linearRampToValueAtTime(
-        frequency + pitchBendAmount, 
+        frequency + pitchBendAmount,
         actx.currentTime + wait + attack + decay
       );
     }
@@ -914,9 +909,9 @@ function soundEffect(
   function play(node) {
     node.start(actx.currentTime + wait);
 
-    //Oscillators have to be stopped otherwise they accumulate in 
+    //Oscillators have to be stopped otherwise they accumulate in
     //memory and tax the CPU. They'll be stopped after a default
-    //timeout of 2 seconds, which should be enough for most sound 
+    //timeout of 2 seconds, which should be enough for most sound
     //effects. Override this in the `soundEffect` parameters if you
     //need a longer sound
     node.stop(actx.currentTime + wait + 2);
@@ -927,8 +922,8 @@ function soundEffect(
 impulseResponse
 ---------------
 
-The `makeSound` and `soundEffect` functions uses `impulseResponse`  to help create an optional reverb effect.  
-It simulates a model of sound reverberation in an acoustic space which 
+The `makeSound` and `soundEffect` functions uses `impulseResponse`  to help create an optional reverb effect.
+It simulates a model of sound reverberation in an acoustic space which
 a convolver node can blend with the source sound. Make sure to include this function along with `makeSound`
 and `soundEffect` if you need to use the reverb feature.
 */
@@ -973,7 +968,7 @@ function impulseResponse(duration, decay, reverse, actx) {
 keyboard
 --------
 
-This isn't really necessary - I just included it for fun to help with the 
+This isn't really necessary - I just included it for fun to help with the
 examples in the `index.html` files.
 The `keyboard` helper function creates `key` objects
 that listen for keyboard events. Create a new key object like
@@ -991,7 +986,7 @@ Then assign `press` and `release` methods like this:
     };
 
 Keyboard objects also have `isDown` and `isUp` Booleans that you can check.
-This is so much easier than having to write out tedious keyboard even capture 
+This is so much easier than having to write out tedious keyboard even capture
 code from scratch.
 
 Like I said, the `keyboard` function has nothing to do with generating sounds,
@@ -1034,4 +1029,3 @@ function keyboard(keyCode) {
   );
   return key;
 }
-

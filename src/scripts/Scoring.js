@@ -42,6 +42,5 @@ Scoring.prototype.setScore = function(points) {
 }
 
 Scoring.prototype.setBestScore = function(points) {
-    console.log(points);
     this.bestScoreText.text = Math.round(points)+' m';
 }

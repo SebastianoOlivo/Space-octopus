@@ -1,13 +1,11 @@
 function Player(path, loop){
 	this.sound;
 	this._path = path;
-	this._loop = loop;	
+	this._loop = loop;
 }
 
 Player.prototype.loadSound = function(){
-	this.sound = sounds[this._path];
-	console.log(this.sound);
-	
+	this.sound = sounds[this._path];	
 }
 
 Player.prototype.playSound = function(){

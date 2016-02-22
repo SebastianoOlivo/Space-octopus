@@ -5,38 +5,39 @@ function Squid() {
 }
 
 Squid.prototype.addSquid = function() {
-    var i = 0,
-        length = this.squidsNumber;
 
-    for(i; i < length; i++) {
-        this.squids.push(new MovingItem('octopus.png'));
-        this.squids[i].scale.x = 0.6;
-        this.squids[i].scale.y = 0.6;
-        this.squids[i].position.x = (GAMEWIDTH/2)-(this.squids[i].width/2);
-    	stage.addChild(this.squids[i]);
-    }
+    this.squid = new MovingItem('octopus.png');
+    this.squid.scale.x = 0.6;
+    this.squid.scale.y = 0.6;
+    this.squid.position.x = (GAMEWIDTH/2)-(this.squid.width/2);
+    this.squid.position.y = (GAMEHEIGHT/2)-(this.squid.height/2);
+    stage.addChild(this.squid);
 
-    if(this.squids[1].position.x += GAMEWIDTH);
-
+    this.light = new MovingItem('light.png');
+    this.light.position.x = (this.squid.x)-(this.light.width/2);
+    this.light.position.y = (this.squid.y)-(this.light.height/2);
+    this.light.scale.x = 2;
+    this.light.scale.y = 2;
+    stage.addChild(this.light);
 }
 
 Squid.prototype.outOfScreen = function() {
-    if(this.squids[0].position.x+(this.squids[0].width/2) > 400) {
-        console.log('left');
-        this.squids[0].position.x = -(this.squids[0].width)/2;
+    if(this.squid.position.x+(this.squid.width/2) > GAMEWIDTH) {
+        this.squid.position.x = -(this.squid.width)/2;
     }
-    if(this.squids[0].position.x < -(this.squids[0].width/2)) {
-        console.log('right');
-        this.squids[0].position.x = 400-(this.squids[0].width/2);
+    if(this.squid.position.x < -(this.squid.width/2)) {
+        this.squid.position.x = GAMEWIDTH-(this.squid.width/2);
     }
 
-    if(this.squids[0].position.y >= GAMEWIDTH+130) {
-        console.log('bottom');
-        this.squids[0].position.y = GAMEWIDTH+130;
+    if(this.squid.position.y > GAMEHEIGHT-40) {
+        this.squid.position.y = GAMEHEIGHT-40;
     }
 
-    if(this.squids[0].position.y <= 0) {
-        console.log('bottom');
-        this.squids[0].position.y = 0;
+    if(this.squid.position.y < 0) {
+        this.squid.position.y = 0;
+
     }
+
+    this.light.position.x = (this.squid.x+this.squid.width/2)-(this.light.width/2);
+    this.light.position.y = (this.squid.y+this.squid.height/2)-(this.light.height/2);
 }
